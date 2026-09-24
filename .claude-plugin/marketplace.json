@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "dryos",
+  "description": "Agentes de IA da DRYOS para escritórios de advocacia",
+  "owner": { "name": "DRYOS", "email": "contato@dryos.com.br" },
+  "plugins": [
+    {
+      "name": "agentes-juridicos",
+      "description": "8 agentes que redigem peças trabalhistas, previdenciárias, de família e de consumidor. Rascunho para revisão do advogado.",
+      "version": "1.0.0",
+      "author": { "name": "DRYOS" },
+      "source": "./plugins/agentes-juridicos",
+      "homepage": "https://agentes-juridicos.dryos.com.br"
+    }
+  ]
+}
