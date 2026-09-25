@@ -143,11 +143,23 @@ Q7: "Já requereu administrativo? Indeferido?"
 
 ### 2. Cálculo da renda per capita
 
+<!-- python:inicio -->
+**Como rodar a conta**
+
+1. Salve o código abaixo, já com os valores do caso, num arquivo `calculo.py` na pasta aberta.
+2. Ache o Python: rode `python3 --version`; se falhar, `python --version`; no Windows, também `py -3 --version`. Rode `calculo.py` com o primeiro que responder "Python 3".
+3. Se nenhum responder, não invente o resultado. Faça a conta passo a passo no texto e termine a resposta com esta linha, em destaque: **Conta feita no texto, sem conferência por código. Para conferir, peça: "instale o Python".**
+4. Se a pessoa pedir para instalar, peça permissão e use só estes comandos:
+   - Windows: `winget install -e --id Python.Python.3.12 --source winget --accept-source-agreements --accept-package-agreements`. Depois, peça para fechar e abrir o VS Code.
+   - Mac: `xcode-select --install`. Uma janela da Apple pede confirmação; espere a instalação terminar e tente o passo 2 de novo.
+
+   Se o comando falhar, não tente outro instalador: diga o erro e mantenha a conta do texto.
+<!-- python:fim -->
+
 ```python
-python3 -c "
 sm_2026 = 1_621.00
 limite_per_capita = sm_2026 / 4
-print(f'Limite per capita 1/4 SM: R\$ {limite_per_capita:,.2f}')
+print(f'Limite per capita 1/4 SM: R$ {limite_per_capita:,.2f}')
 membros = [
     ('Cliente', 0),
     ('Cônjuge', 600),
@@ -157,11 +169,10 @@ membros = [
 total = sum(r for _, r in membros)
 qtd = len(membros)
 per_capita = total / qtd
-print(f'Renda total: R\$ {total:,.2f}')
+print(f'Renda total: R$ {total:,.2f}')
 print(f'Pessoas: {qtd}')
-print(f'Per capita: R\$ {per_capita:,.2f}')
+print(f'Per capita: R$ {per_capita:,.2f}')
 print('Atende rígido: ' + ('SIM' if per_capita < limite_per_capita else 'NÃO'))
-"
 ```
 
 ### 3. Provas estratégicas
