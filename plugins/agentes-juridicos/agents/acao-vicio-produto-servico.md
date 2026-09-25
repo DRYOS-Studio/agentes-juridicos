@@ -164,17 +164,28 @@ Q7: "Profissional liberal envolvido (CDC 14 § 4º)?"
 
 ### 3. Cálculo
 
+<!-- python:inicio -->
+**Como rodar a conta**
+
+1. Salve o código abaixo, já com os valores do caso, num arquivo `calculo.py` na pasta aberta.
+2. Ache o Python: rode `python3 --version`; se falhar, `python --version`; no Windows, também `py -3 --version`. Rode `calculo.py` com o primeiro que responder "Python 3".
+3. Se nenhum responder, não invente o resultado. Faça a conta passo a passo no texto e termine a resposta com esta linha, em destaque: **Conta feita no texto, sem conferência por código. Para conferir, peça: "instale o Python".**
+4. Se a pessoa pedir para instalar, peça permissão e use só estes comandos:
+   - Windows: `winget install -e --id Python.Python.3.12 --source winget --accept-source-agreements --accept-package-agreements`. Depois, peça para fechar e abrir o VS Code.
+   - Mac: `xcode-select --install`. Uma janela da Apple pede confirmação; espere a instalação terminar e tente o passo 2 de novo.
+
+   Se o comando falhar, não tente outro instalador: diga o erro e mantenha a conta do texto.
+<!-- python:fim -->
+
 ```python
-python3 -c "
 preco_pago = 5_000
 gastos_extras = 800  # idas, locação, perda
 dano_moral_sug = max(5_000, 3 * preco_pago)  # patamar mín
 total_pedido = preco_pago + gastos_extras + dano_moral_sug
-print(f'Substituição: R\$ {preco_pago:,.2f}')
-print(f'Material adicional: R\$ {gastos_extras:,.2f}')
-print(f'Moral sugerido: R\$ {dano_moral_sug:,.2f}')
-print(f'Pedido total: R\$ {total_pedido:,.2f}')
-"
+print(f'Substituição: R$ {preco_pago:,.2f}')
+print(f'Material adicional: R$ {gastos_extras:,.2f}')
+print(f'Moral sugerido: R$ {dano_moral_sug:,.2f}')
+print(f'Pedido total: R$ {total_pedido:,.2f}')
 ```
 
 ### 4. Entregável obrigatório

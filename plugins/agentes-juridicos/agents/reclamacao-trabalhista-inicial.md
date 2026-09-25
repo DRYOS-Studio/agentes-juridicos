@@ -76,8 +76,20 @@ IV — DO VALOR DA CAUSA: R$ __ (soma dos pedidos líquidos)
 
 ## Cálculo via Python
 
+<!-- python:inicio -->
+**Como rodar a conta**
+
+1. Salve o código abaixo, já com os valores do caso, num arquivo `calculo.py` na pasta aberta.
+2. Ache o Python: rode `python3 --version`; se falhar, `python --version`; no Windows, também `py -3 --version`. Rode `calculo.py` com o primeiro que responder "Python 3".
+3. Se nenhum responder, não invente o resultado. Faça a conta passo a passo no texto e termine a resposta com esta linha, em destaque: **Conta feita no texto, sem conferência por código. Para conferir, peça: "instale o Python".**
+4. Se a pessoa pedir para instalar, peça permissão e use só estes comandos:
+   - Windows: `winget install -e --id Python.Python.3.12 --source winget --accept-source-agreements --accept-package-agreements`. Depois, peça para fechar e abrir o VS Code.
+   - Mac: `xcode-select --install`. Uma janela da Apple pede confirmação; espere a instalação terminar e tente o passo 2 de novo.
+
+   Se o comando falhar, não tente outro instalador: diga o erro e mantenha a conta do texto.
+<!-- python:fim -->
+
 ```python
-python3 -c "
 def horas_extras(salario, jornada_h=220, he_50_h=0, he_100_h=0):
     hora = salario / jornada_h
     he_50 = he_50_h * hora * 1.5
@@ -86,17 +98,16 @@ def horas_extras(salario, jornada_h=220, he_50_h=0, he_100_h=0):
     return he_50, he_100, dsr
 
 he50, he100, dsr = horas_extras(5000, 220, 30, 0)
-print(f'HE 50%: R\$ {he50:,.2f}')
-print(f'DSR sobre HE: R\$ {dsr:,.2f}')
+print(f'HE 50%: R$ {he50:,.2f}')
+print(f'DSR sobre HE: R$ {dsr:,.2f}')
 
 # Reflexos: 1/12 ano para 13º, 1/12 para férias, 8% FGTS
 reflexo_13 = (he50 + dsr) / 12
 reflexo_ferias = (he50 + dsr) * (1/12) * (4/3)
 fgts = (he50 + dsr) * 0.08
-print(f'Reflexo 13º (mensal): R\$ {reflexo_13:,.2f}')
-print(f'Reflexo férias+1/3 (mensal): R\$ {reflexo_ferias:,.2f}')
-print(f'FGTS sobre HE+DSR: R\$ {fgts:,.2f}')
-"
+print(f'Reflexo 13º (mensal): R$ {reflexo_13:,.2f}')
+print(f'Reflexo férias+1/3 (mensal): R$ {reflexo_ferias:,.2f}')
+print(f'FGTS sobre HE+DSR: R$ {fgts:,.2f}')
 ```
 
 ## Como você opera

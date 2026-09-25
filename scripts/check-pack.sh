@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # G1–G3 (G4 mora em tests/guide-sync.js no repo do site). Uso: scripts/check-pack.sh [source-do-marketplace]
-# source default = este diretório; depois do push: DRYOS-Studio/agentes-juridicos
+# source default = este diretório; o canal de produção é https://www.dryos.com.br/plugins/marketplace.json
 set -euo pipefail
 cd "$(dirname "$0")/.."
 SRC="${1:-$PWD}"
@@ -21,11 +21,17 @@ done
 [ "$(echo $got | tr ' ' '\n' | sort | xargs)" = "$EXPECTED" ] || { echo "G2 FAIL: pacote =$got"; exit 1; }
 echo "G2 ok: 8 agentes"
 
-# G3: instala num config vazio usando os comandos do README
-add=$(grep -oE '/plugin marketplace add [^ `]+' README.md | head -1 || true)
-inst=$(grep -oE '/plugin install [^ `]+' README.md | head -1 || true)
-[ -n "$add" ] && [ -n "$inst" ] || { echo "G3 FAIL: README sem comandos"; exit 1; }
-id=${inst#/plugin install }
+# R4: a versão do plugin.json é a mesma do marketplace do repo
+vp=$(python3 -c 'import json;print(json.load(open("plugins/agentes-juridicos/.claude-plugin/plugin.json"))["version"])')
+vm=$(python3 -c 'import json;print([p for p in json.load(open(".claude-plugin/marketplace.json"))["plugins"] if p["name"]=="agentes-juridicos"][0]["version"])')
+[ "$vp" = "$vm" ] || { echo "R4 FAIL: plugin.json=$vp marketplace=$vm"; exit 1; }
+echo "R4 ok: versão $vp"
+
+# G3: instala num config vazio o plugin que o deep link do README pede
+inst=$(grep -oE 'install-plugin\?plugin=[a-z-]+' README.md | head -1 | sed 's/.*plugin=//' || true)
+mkt=$(python3 -c 'import json;print(json.load(open(".claude-plugin/marketplace.json"))["name"])')
+[ -n "$inst" ] || { echo "G3 FAIL: README sem o deep link install-plugin"; exit 1; }
+id="$inst@$mkt"
 cfg=$(mktemp -d); trap 'rm -rf "$cfg"' EXIT
 export CLAUDE_CONFIG_DIR="$cfg"
 claude plugin marketplace add "$SRC" >/dev/null
@@ -33,5 +39,4 @@ claude plugin install "$id" >/dev/null
 inv=$(claude plugin details "$id" | grep -E '^\s+Agents \(')
 for a in $EXPECTED; do echo "$inv" | grep -q "$a" || { echo "G3 FAIL: $a não carregou"; exit 1; }; done
 echo "$inv" | grep -q 'Agents (8)' || { echo "G3 FAIL: $inv"; exit 1; }
-[ "$SRC" = "$PWD" ] || [ "${add#/plugin marketplace add }" = "$SRC" ] || { echo "G3 FAIL: README diz $add"; exit 1; }
 echo "G3 ok: $id instalado, 8 agentes"

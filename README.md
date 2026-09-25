@@ -19,63 +19,41 @@ O que eles produzem é **rascunho**. O advogado revisa e assina, e a responsabil
 ## Antes de começar
 
 - **Plano pago do Claude** (Pro ou superior). O plano gratuito não inclui o Claude Code.
-- Um computador com Mac ou Windows.
+- Um computador com Mac ou Windows. Faça a instalação no computador, não no celular. Não precisa usar
+  Terminal nem instalar nada além do VS Code.
 
-## Instalação no Mac
+## Instalação
 
-1. Abra o **Terminal**: tecle `Cmd + Espaço`, digite "Terminal" e aperte Enter.
-2. Instale as ferramentas de linha de comando da Apple, que trazem o git e o Python:
+1. **Instale o VS Code**, o editor gratuito da Microsoft: baixe em
+   [code.visualstudio.com/download](https://code.visualstudio.com/download) e instale com as opções
+   padrão.
+2. **Instale a extensão Claude Code.** No VS Code, tecle `Cmd + Shift + X` (Mac) ou
+   `Ctrl + Shift + X` (Windows), busque "Claude Code" (publicada pela Anthropic) e clique em
+   **Install**.
+3. **Crie uma pasta para os agentes e abra no VS Code.** Crie a pasta "Agentes jurídicos" em
+   Documentos. No VS Code, vá em **File → Open Folder** (Arquivo → Abrir Pasta) e escolha essa
+   pasta. É nela que o Claude salva as peças.
+4. **Entre com a sua conta.** Clique no ícone do Claude Code (✻) na barra da esquerda e, no painel,
+   em **Sign in**. O navegador abre para você entrar com a sua conta do Claude.
+5. **Instale os agentes.** Abra [dryos.com.br/agentes-juridicos-obrigado](https://www.dryos.com.br/agentes-juridicos-obrigado#instalar)
+   e clique em **Instalar os agentes**. O botão abre o VS Code direto na instalação. O endereço do
+   botão é este:
    ```
-   xcode-select --install
+   vscode://anthropic.claude-code/install-plugin?plugin=agentes-juridicos&marketplace=https%3A%2F%2Fwww.dryos.com.br%2Fplugins%2Fmarketplace.json
    ```
-   Uma janela vai pedir confirmação. Clique em **Instalar** e espere terminar. Se aparecer
-   "already installed", pode seguir.
-3. Instale o Claude Code:
-   ```
-   curl -fsSL https://claude.ai/install.sh | bash
-   ```
-4. Crie uma pasta só para os agentes e entre nela:
-   ```
-   mkdir -p ~/agentes-juridicos && cd ~/agentes-juridicos
-   ```
-5. Siga para **Instalar os agentes**.
+   Se o VS Code perguntar se pode abrir o link, confirme. Se ele pedir para adicionar o catálogo da
+   DRYOS, confira que o endereço é `https://www.dryos.com.br/plugins/marketplace.json` e confirme. Depois escolha **Install for you**.
 
-## Instalação no Windows
-
-1. Instale o **Git for Windows**: baixe em [git-scm.com/downloads/win](https://git-scm.com/downloads/win) e avance com as opções padrão.
-2. Instale o **Python** pela Microsoft Store: abra a Store, busque "Python 3" (publicado pela Python Software Foundation) e clique em **Obter**.
-3. Abra o **PowerShell**: tecle `Windows`, digite "PowerShell" e aperte Enter.
-4. Instale o Claude Code:
+   **Não abriu?** No painel do Claude, digite `/plugins`, vá na aba **Marketplaces**, cole o
+   endereço abaixo e confirme. Depois, na aba **Plugins**, clique em **Install** em
+   `agentes-juridicos` e escolha **Install for you**.
    ```
-   irm https://claude.ai/install.ps1 | iex
+   https://www.dryos.com.br/plugins/marketplace.json
    ```
-5. Feche e abra o PowerShell de novo. Crie uma pasta só para os agentes e entre nela:
-   ```
-   mkdir -Force $HOME\agentes-juridicos; cd $HOME\agentes-juridicos
-   ```
-6. Siga para **Instalar os agentes**.
-
-## Instalar os agentes
-
-1. Abra o Claude Code na pasta que você criou:
-   ```
-   claude
-   ```
-   Na primeira vez, o navegador abre para você entrar com a sua conta do Claude.
-2. Dentro do Claude Code, adicione o catálogo da DRYOS:
-   ```
-   /plugin marketplace add DRYOS-Studio/agentes-juridicos
-   ```
-3. Instale os agentes e, quando o Claude perguntar, escolha **User scope**:
-   ```
-   /plugin install agentes-juridicos@dryos
-   ```
-4. Para conferir, digite `/plugin`, vá até a aba **Installed** e veja `agentes-juridicos` na lista.
-   Tecle `Esc` para sair.
 
 ## Fazer o teste
 
-Cole a mensagem abaixo no Claude Code. O caso é fictício; não use dados de cliente real no teste.
+Cole a mensagem abaixo no painel do Claude, no VS Code. O caso é fictício; não use dados de cliente real no teste.
 
 <!-- teste:inicio -->
 ```
@@ -90,23 +68,22 @@ Para chamar outro agente, diga o nome dele no pedido, por exemplo: "Use o agente
 
 ## Perguntas frequentes
 
-**Apareceu "python3: command not found" ou "python3 não é reconhecido".** Os agentes de cálculo
-usam o Python. No Mac, rode `xcode-select --install` de novo. No Windows, instale o Python pela
-Microsoft Store (passo 2), feche e abra o PowerShell. Se ainda falhar, peça ao Claude: "faça a conta
-sem usar Python".
+**O Claude avisou que a conta não foi conferida por código.** Os agentes de cálculo conferem a
+conta com o Python. Sem ele, fazem a conta no texto e avisam. Para conferir, peça ao Claude
+"instale o Python". Ele pede permissão antes de instalar. Depois de instalar no Windows, feche e abra o
+VS Code.
 
 **E o sigilo dos meus clientes?** O que você digita no Claude Code vai para os servidores da
 Anthropic, a empresa que faz o Claude. Anonimize nomes e documentos quando puder e siga a política
 do seu escritório.
 
-**O Claude pediu permissão para rodar um comando.** Os agentes só precisam rodar `python3` (para
-cálculos) e criar arquivos da peça na pasta dos agentes. Não aprove comandos que você não entende,
+**O Claude pediu permissão para rodar um comando.** Os agentes só precisam instalar e rodar o Python
+(para cálculos) e criar arquivos da peça na pasta dos agentes. Não aprove comandos que você não entende,
 e não abra no Claude Code documentos de origem desconhecida.
 
-**Deu "/plugin isn't available in this environment".** Você está no app de desktop ou numa sessão
-na nuvem. Use o Terminal (Mac) ou o PowerShell (Windows), como no passo a passo.
-
-**Como atualizo?** Rode `/plugin marketplace update dryos` dentro do Claude Code.
+**Prefiro o terminal.** Com o Claude Code de terminal instalado ([claude.ai/install](https://code.claude.com/docs/en/setup)), rode
+`claude plugin marketplace add https://www.dryos.com.br/plugins/marketplace.json` e depois
+`claude plugin install agentes-juridicos@dryos`.
 
 ## Quer a rotina do escritório automatizada?
 
