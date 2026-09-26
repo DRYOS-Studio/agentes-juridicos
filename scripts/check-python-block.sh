@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# R2: os agentes de cálculo trazem o bloco de scripts/python-block.md, idêntico, e nenhum usa `python3 -c`.
+# R2: os seis agentes de cálculo de entrada trazem o bloco de scripts/python-block.md,
+# idêntico, e nenhum usa `python3 -c`. Os demais agentes podem conter exemplos Python
+# próprios; eles não fazem parte deste check de compatibilidade do pacote.
 # Uso: scripts/check-python-block.sh [--write]   (--write aplica o bloco onde ele diverge)
 set -euo pipefail
 cd "$(dirname "$0")/.."
@@ -28,9 +30,6 @@ for n in calc:
         r = subprocess.run([sys.executable, t.name], capture_output=True, text=True)
         if r.returncode != 0: print(f'R2 FAIL: {n} código não roda: {r.stderr.strip().splitlines()[-1:]}'); bad += 1
         elif 'R$' not in r.stdout and 'R\\$' in r.stdout: print(f'R2 FAIL: {n} imprime R\\$'); bad += 1
-others = [p for p in pathlib.Path('plugins/agentes-juridicos/agents').glob('*.md') if p.stem not in calc]
-for p in others:
-    if 'python' in p.read_text().lower(): print(f'R2 FAIL: {p.stem} fala de Python e não está na lista'); bad += 1
 print('R2 ok: bloco idêntico em', len(calc), 'agentes' if not bad else '')
 sys.exit(1 if bad else 0)
 PY

@@ -32,7 +32,7 @@ Fabricante + importador + distribuidor + comerciante = todos respondem.
 - **Comerciante (CDC 13)**: apenas se:
   - Não puder identificar o fabricante (anônimo / sem identificação)
   - Conservou mal o produto perecível
-  - Preferir-se ao varejo
+  - Produto sem identificação clara do fabricante, produtor, construtor ou importador
 
 ## Prazos decadenciais (CDC 26)
 
@@ -103,7 +103,8 @@ b) Inversão do ônus
 c) Procedência:
    c.1) [VÍCIO]:
       ☐ Substituição por idêntico em perfeitas condições, OU
-      ☐ Restituição em dobro do valor pago, atualizada Selic, OU
+      ☐ Restituição da quantia paga, corrigida pelo IPCA e com juros pela taxa legal,
+        ou restituição em dobro apenas se configurada cobrança indevida contrária à boa-fé
       ☐ Abatimento proporcional R$ __
    c.2) Indenização danos materiais R$ __ (gastos com idas, locação substituta, perda de uso)
    c.3) Indenização danos morais R$ __ (transtornos significativos)
@@ -135,7 +136,7 @@ LEGAL (CDC 26):
 CONTRATUAL (CDC 50): adicional, não substitui legal.
   - Eletrônicos: geralmente 1 ano
   - Imóveis residenciais: 5 anos (CC 618)
-  - Imóveis vícios redibitórios: 1 ano (CC 446)
+  - Imóveis vícios redibitórios: 1 ano (CC 445)
 
 CUMULAM-SE: contratual + legal (REsp 1.051.323/RS).
 ```
@@ -224,7 +225,7 @@ print(f'Pedido total: R$ {total_pedido:,.2f}')
 - Pleitear conserto após 30 dias quando consumidor pode escolher substituição/restituição
 - Não pedir perícia em vício técnico
 - Fazer ação sem reclamação prévia documentada
-- Pedir dobro sem demonstrar má-fé (Tema 929 — pós-trânsito presumida)
+- Repetição em dobro: demonstrar cobrança indevida contrária à boa-fé objetiva, conforme orientação do STJ, e observar a modulação aplicável.
 
 ### 6. Casos de borda
 
@@ -244,7 +245,7 @@ print(f'Pedido total: R$ {total_pedido:,.2f}')
 
 ### 8. Tom e autoavaliação
 
-Técnico, com prazos. CDC 12-27, 101 I; Súm 297, 477, 503 STJ; Tema 929 STJ.
+Técnico, com prazos. CDC 12-27, 101 I; Tema 929 STJ.
 
 - [ ] Vício ou defeito distinguido?
 - [ ] Prazo respeitado?
@@ -253,3 +254,6 @@ Técnico, com prazos. CDC 12-27, 101 I; Súm 297, 477, 503 STJ; Tema 929 STJ.
 - [ ] Perícia se técnico?
 - [ ] Tutela se urgente?
 - [ ] Procuração específica?
+
+
+

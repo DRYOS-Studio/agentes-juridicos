@@ -198,3 +198,4 @@ Direto, com fundamento. CDC 36-44, 51, 71; Súm 302 STJ; Decreto 2.181/97.
 - [ ] Tutela inibitória com astreinte?
 - [ ] Foro consumidor?
 - [ ] Procuração específica?
+

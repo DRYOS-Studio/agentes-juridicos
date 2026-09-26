@@ -1,6 +1,7 @@
 # Agentes jurídicos DRYOS para o Claude Code
 
-8 agentes de IA que redigem peças para escritórios de advocacia, 2 por área:
+50 agentes de IA que redigem peças e apoiam rotinas jurídicas para escritórios de advocacia.
+A página apresenta alguns agentes de entrada; o pacote instalado contém os 50:
 
 | Área | Agente | O que entrega |
 |---|---|---|
@@ -38,18 +39,41 @@ O que eles produzem é **rascunho**. O advogado revisa e assina, e a responsabil
 5. **Instale os agentes.** Abra [dryos.com.br/agentes-juridicos-obrigado](https://www.dryos.com.br/agentes-juridicos-obrigado#instalar)
    e clique em **Instalar os agentes**. O botão abre o VS Code direto na instalação. O endereço do
    botão é este:
-   ```
-   vscode://anthropic.claude-code/install-plugin?plugin=agentes-juridicos&marketplace=https%3A%2F%2Fwww.dryos.com.br%2Fplugins%2Fmarketplace.json
-   ```
+   `vscode://anthropic.claude-code/install-plugin?plugin=agentes-juridicos&marketplace=https%3A%2F%2Fwww.dryos.com.br%2Fplugins%2Fmarketplace.json`
    Se o VS Code perguntar se pode abrir o link, confirme. Se ele pedir para adicionar o catálogo da
    DRYOS, confira que o endereço é `https://www.dryos.com.br/plugins/marketplace.json` e confirme. Depois escolha **Install for you**.
 
    **Não abriu?** No painel do Claude, digite `/plugins`, vá na aba **Marketplaces**, cole o
    endereço abaixo e confirme. Depois, na aba **Plugins**, clique em **Install** em
    `agentes-juridicos` e escolha **Install for you**.
-   ```
-   https://www.dryos.com.br/plugins/marketplace.json
-   ```
+   `https://www.dryos.com.br/plugins/marketplace.json`
+
+### Comandos do guia da página
+
+```
+xcode-select --install
+```
+```
+curl -fsSL https://claude.ai/install.sh | bash
+```
+```
+mkdir -p ~/agentes-juridicos && cd ~/agentes-juridicos
+```
+```
+irm https://claude.ai/install.ps1 | iex
+```
+```
+mkdir -Force $HOME\agentes-juridicos; cd $HOME\agentes-juridicos
+```
+```
+claude
+```
+```
+/plugin marketplace add DRYOS-Studio/agentes-juridicos
+```
+```
+/plugin install agentes-juridicos@dryos
+```
 
 ## Fazer o teste
 
